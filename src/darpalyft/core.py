@@ -5,7 +5,7 @@ import random
 import uuid
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 
 class MaterialType(str, Enum):
@@ -16,7 +16,7 @@ class MaterialType(str, Enum):
     ABS_PLASTIC = "ABS_PLASTIC"
 
 
-MATERIAL_DENSITY: dict = {
+MATERIAL_DENSITY: Dict[MaterialType, float] = {
     MaterialType.CARBON_FIBER: 1600.0,   # kg/m³
     MaterialType.ALUMINUM_ALLOY: 2700.0,
     MaterialType.TITANIUM: 4500.0,
@@ -24,7 +24,7 @@ MATERIAL_DENSITY: dict = {
     MaterialType.ABS_PLASTIC: 1050.0,
 }
 
-MATERIAL_STRENGTH: dict = {
+MATERIAL_STRENGTH: Dict[MaterialType, float] = {
     MaterialType.CARBON_FIBER: 3500.0,   # MPa (UTS)
     MaterialType.ALUMINUM_ALLOY: 310.0,
     MaterialType.TITANIUM: 900.0,
@@ -80,6 +80,68 @@ class PhysicsConstraints:
     min_thrust_to_weight: float = 1.5
 
 
+# ---------------------------------------------------------------------------
+# Continual / lifelong learning additions
+# ---------------------------------------------------------------------------
+
+
+class TaskDomain(str, Enum):
+    """Mission domains representing distribution shifts across tasks."""
+
+    URBAN = "URBAN"
+    MARITIME = "MARITIME"
+    MOUNTAIN = "MOUNTAIN"
+    DESERT = "DESERT"
+    ARCTIC = "ARCTIC"
+
+
+@dataclass
+class TaskRecord:
+    """Performance record for a model on a specific task at a specific point in training."""
+
+    task_id: str
+    domain: TaskDomain
+    # accuracy after the model was *trained* on this task
+    accuracy_after_training: float
+    # accuracy on this task measured *after* training on a *later* task
+    accuracy_after_later: Optional[float] = None
+    # accuracy before this task was trained (used for forward transfer)
+    accuracy_before_training: Optional[float] = None
+
+    def __post_init__(self) -> None:
+        for attr in ("accuracy_after_training", "accuracy_after_later", "accuracy_before_training"):
+            val = getattr(self, attr)
+            if val is not None and not (0.0 <= val <= 1.0):
+                raise ValueError(f"{attr} must be in [0,1], got {val}")
+
+
+@dataclass
+class TaskSequence:
+    """Ordered sequence of tasks for a lifelong learning benchmark."""
+
+    sequence_id: str = field(default_factory=lambda: str(uuid.uuid4())[:8])
+    records: List[TaskRecord] = field(default_factory=list)
+
+    def task_ids(self) -> List[str]:
+        return [r.task_id for r in self.records]
+
+    def domains(self) -> List[TaskDomain]:
+        return [r.domain for r in self.records]
+
+    def domain_drift_count(self) -> int:
+        """Number of consecutive domain changes in the sequence."""
+        count = 0
+        for i in range(1, len(self.records)):
+            if self.records[i].domain != self.records[i - 1].domain:
+                count += 1
+        return count
+
+
+# ---------------------------------------------------------------------------
+# Physics helpers
+# ---------------------------------------------------------------------------
+
+
 def motor_thrust_n(
     motor_count: int, propeller_diameter_m: float, throttle: float = 0.8
 ) -> float:
@@ -101,6 +163,11 @@ def structural_safety_factor(design: DroneDesign) -> float:
 def payload_capacity(design: DroneDesign, max_thrust_n: float) -> float:
     """Payload capacity in kg."""
     return max_thrust_n / 9.81 - design.total_mass()
+
+
+# ---------------------------------------------------------------------------
+# Optimizer
+# ---------------------------------------------------------------------------
 
 
 class DesignOptimizer:
