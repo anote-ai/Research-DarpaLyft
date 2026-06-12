@@ -68,7 +68,7 @@ class DroneDesign:
         if self.motor_count < 1:
             raise ValueError(f"motor_count must be >= 1, got {self.motor_count}")
         if self.propeller_diameter_m <= 0:
-            raise ValueError(f"propeller_diameter_m must be > 0")
+            raise ValueError("propeller_diameter_m must be > 0")
 
 
 @dataclass
