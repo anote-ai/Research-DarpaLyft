@@ -1,0 +1,167 @@
+[
+  {
+    "sequence": "drift_seed0",
+    "n_tasks": 6,
+    "domain_drift_count": 4,
+    "backward_transfer": -0.0705,
+    "forward_transfer": 0.0697,
+    "continual_learning_score": 0.2672,
+    "plasticity_score": 0.5504,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 0.8
+  },
+  {
+    "sequence": "iid_seed0",
+    "n_tasks": 6,
+    "domain_drift_count": 0,
+    "backward_transfer": -0.0688,
+    "forward_transfer": 0.1003,
+    "continual_learning_score": 0.283,
+    "plasticity_score": 0.8877,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 0.0
+  },
+  {
+    "sequence": "catastrophic_seed0",
+    "n_tasks": 5,
+    "domain_drift_count": 4,
+    "backward_transfer": -0.608,
+    "forward_transfer": 0.0242,
+    "continual_learning_score": 0.1101,
+    "plasticity_score": 0.8376,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 1.0
+  },
+  {
+    "sequence": "drift_seed1",
+    "n_tasks": 6,
+    "domain_drift_count": 4,
+    "backward_transfer": -0.0559,
+    "forward_transfer": 0.0907,
+    "continual_learning_score": 0.2814,
+    "plasticity_score": 0.5954,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 0.8
+  },
+  {
+    "sequence": "iid_seed1",
+    "n_tasks": 6,
+    "domain_drift_count": 0,
+    "backward_transfer": -0.0647,
+    "forward_transfer": 0.0624,
+    "continual_learning_score": 0.2651,
+    "plasticity_score": 0.6839,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 0.0
+  },
+  {
+    "sequence": "catastrophic_seed1",
+    "n_tasks": 5,
+    "domain_drift_count": 4,
+    "backward_transfer": -0.5732,
+    "forward_transfer": 0.0218,
+    "continual_learning_score": 0.1176,
+    "plasticity_score": 0.7918,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 1.0
+  },
+  {
+    "sequence": "drift_seed2",
+    "n_tasks": 6,
+    "domain_drift_count": 4,
+    "backward_transfer": -0.0636,
+    "forward_transfer": 0.0776,
+    "continual_learning_score": 0.2729,
+    "plasticity_score": 0.6343,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 0.8
+  },
+  {
+    "sequence": "iid_seed2",
+    "n_tasks": 6,
+    "domain_drift_count": 0,
+    "backward_transfer": -0.059,
+    "forward_transfer": 0.069,
+    "continual_learning_score": 0.2697,
+    "plasticity_score": 0.7694,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 0.0
+  },
+  {
+    "sequence": "catastrophic_seed2",
+    "n_tasks": 5,
+    "domain_drift_count": 4,
+    "backward_transfer": -0.6146,
+    "forward_transfer": 0.0228,
+    "continual_learning_score": 0.1077,
+    "plasticity_score": 0.8374,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 1.0
+  },
+  {
+    "sequence": "drift_seed3",
+    "n_tasks": 6,
+    "domain_drift_count": 5,
+    "backward_transfer": -0.0441,
+    "forward_transfer": 0.0873,
+    "continual_learning_score": 0.2826,
+    "plasticity_score": 0.6172,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 1.0
+  },
+  {
+    "sequence": "iid_seed3",
+    "n_tasks": 6,
+    "domain_drift_count": 0,
+    "backward_transfer": -0.0589,
+    "forward_transfer": 0.0887,
+    "continual_learning_score": 0.2796,
+    "plasticity_score": 0.6826,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 0.0
+  },
+  {
+    "sequence": "catastrophic_seed3",
+    "n_tasks": 5,
+    "domain_drift_count": 4,
+    "backward_transfer": -0.5572,
+    "forward_transfer": 0.018,
+    "continual_learning_score": 0.1197,
+    "plasticity_score": 0.7962,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 1.0
+  },
+  {
+    "sequence": "drift_seed4",
+    "n_tasks": 6,
+    "domain_drift_count": 5,
+    "backward_transfer": -0.0714,
+    "forward_transfer": 0.071,
+    "continual_learning_score": 0.2677,
+    "plasticity_score": 0.6678,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 1.0
+  },
+  {
+    "sequence": "iid_seed4",
+    "n_tasks": 6,
+    "domain_drift_count": 0,
+    "backward_transfer": -0.0583,
+    "forward_transfer": 0.0878,
+    "continual_learning_score": 0.2794,
+    "plasticity_score": 0.7291,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 0.0
+  },
+  {
+    "sequence": "catastrophic_seed4",
+    "n_tasks": 5,
+    "domain_drift_count": 4,
+    "backward_transfer": -0.6206,
+    "forward_transfer": 0.0206,
+    "continual_learning_score": 0.1052,
+    "plasticity_score": 0.785,
+    "stability_score": 0.0,
+    "domain_drift_penalty": 1.0
+  }
+]
